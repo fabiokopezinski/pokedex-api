@@ -9,10 +9,12 @@ import org.springframework.data.mongodb.core.mapping.FieldType;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
+@Setter
 @Document(collection = "pokemon")
 public class Pokemon {
 
@@ -21,7 +23,7 @@ public class Pokemon {
 
 	@Indexed(unique=true)
 	@Field(name="CD_POKEMON")
-	private Long pokemonId;
+	private String pokemonId;
 	
 	@Field(name="NOME")
 	private String name;

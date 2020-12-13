@@ -8,5 +8,5 @@ public interface BaseCommandRepository <T,ID> extends Repository<T, ID>{
 	
 		T save(T ID);
 		
-		T deleteById(String ID);
+		T deleteByPokemonId(String ID);
 }

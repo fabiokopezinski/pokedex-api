@@ -1,6 +1,7 @@
 package br.com.pokedex.repository;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.data.repository.NoRepositoryBean;
 import org.springframework.data.repository.Repository;
@@ -10,5 +11,5 @@ public interface BaseQueryRepository <T,ID> extends Repository<T,ID> {
 
 	List<T>findAll();
 	
-	T findById(T ID);
+	Optional<T> findById(String ID);
 }
