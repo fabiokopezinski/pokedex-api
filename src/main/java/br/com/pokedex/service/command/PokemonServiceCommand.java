@@ -39,15 +39,15 @@ public class PokemonServiceCommand {
 	}
 
 	public PokemonResponse update(@Valid PokemonUpdate pokemonUpdate,Long id) {
-		Pokemon pokemon = queryRepository.findByPokemonId(String.valueOf(id)).orElseThrow(()->Message.NOT_FOUND.asBusinessException());
+		Pokemon pokemon = queryRepository.findByPokemonId(String.valueOf(id)).orElseThrow(Message.NOT_FOUND::asBusinessException);
 		
-		if(pokemonUpdate.getName()!=null) {
+		if(pokemonUpdate.getName() != null) {
 			pokemon.setName(pokemonUpdate.getName());
-		}else if(pokemonUpdate.getTypeOne()!=null) {
+		}else if(pokemonUpdate.getTypeOne() != null) {
 			pokemon.setTypeOne(pokemonUpdate.getTypeOne());
-		}else if(pokemonUpdate.getTypeTwo()!=null) {
+		}else if(pokemonUpdate.getTypeTwo() != null) {
 			pokemon.setTypeTwo(pokemonUpdate.getTypeTwo());
-		}else if(pokemon.getDescription()!=null) {
+		}else if(pokemon.getDescription() != null) {
 			pokemon.setDescription(pokemonUpdate.getDescription());
 		}
 		log.info("method=update id={} pokemonId={}",pokemon.getId(),pokemon.getPokemonId());
@@ -55,7 +55,7 @@ public class PokemonServiceCommand {
 	}
 	
 	public void delete(Long pokemonId) {
-		queryRepository.findByPokemonId(String.valueOf(pokemonId)).orElseThrow(()->Message.NOT_FOUND.asBusinessException());
+		queryRepository.findByPokemonId(String.valueOf(pokemonId)).orElseThrow(Message.NOT_FOUND::asBusinessException);
 		commandRepository.deleteByPokemonId(String.valueOf(pokemonId));
 		log.info("method=delete pokemonId={}",pokemonId);
 	}

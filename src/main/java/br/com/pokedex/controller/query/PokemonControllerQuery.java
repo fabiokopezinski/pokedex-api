@@ -29,4 +29,15 @@ public class PokemonControllerQuery {
 	public ResponseEntity<PokemonResponse>findByPokemonId(@PathVariable("pokemonId")Long pokemonId){
 		return ResponseEntity.ok(service.findByPokemon(pokemonId));
 	}
+	
+	@GetMapping("/type")
+	public ResponseEntity<Page<PokemonResponse>>findByType(@RequestParam(required = false, defaultValue = "") String typeOne, @RequestParam(required = false, defaultValue = "") String typeTwo, @RequestParam(required=false,value="offset",defaultValue = "0")int offset
+			,@RequestParam(required = false,value = "limit",defaultValue = "10")int limit) {
+		return ResponseEntity.ok(service.findByType(typeOne,typeTwo, offset, limit));
+	}
+	
+	@GetMapping("/name")
+	public ResponseEntity<PokemonResponse>findByName(@RequestParam(required = true) String name) {
+		return ResponseEntity.ok(service.findByName(name));
+	}
 }

@@ -15,5 +15,9 @@ public interface PokemonQueryRepository extends BaseQueryRepository<Pokemon, Str
 
 	Page<Pokemon> findAll(Pageable page); 
 	
+	Page<Pokemon> findByTypeOneAndTypeTwo(String typeOne, String typeTwo, Pageable page);
+	
+	Optional<Pokemon> findByName(String name);
+	
 	Optional<Pokemon> findByPokemonId(String pokemon);
 }

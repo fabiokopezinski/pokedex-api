@@ -32,6 +32,21 @@ public class PokemonServiceQuery {
 	
 	public PokemonResponse findByPokemon(Long pokemonId) {
 		log.info("method=findByPokemon pokemonId={}",pokemonId);
-		return converterResponse.toOutPut(repository.findByPokemonId(String.valueOf(pokemonId)).orElseThrow(()->Message.NOT_FOUND.asBusinessException()), PokemonResponse.class);
+		return converterResponse.toOutPut(repository.findByPokemonId(String.valueOf(pokemonId)).orElseThrow(Message.NOT_FOUND::asBusinessException), PokemonResponse.class);
 	}
+	
+	public Page<PokemonResponse>findByType(String typeOne, String typeTwo, int offeset, int size){
+		if(typeOne.isBlank() && typeTwo.isBlank()) {
+			return findAll(offeset, size);
+		}
+		Pageable p = PageRequest.of(offeset, size);
+		log.info("method=findTypePokemon typeOne={} typeTwo={} offset={} size={}",typeOne, typeTwo,offeset,size);
+		return converterResponse.toPage(repository.findByTypeOneAndTypeTwo(typeOne, typeTwo, p), PokemonResponse.class);
+	}
+	
+	public PokemonResponse findByName(String name){
+		log.info("method=findTypePokemon name={}",name);
+		return converterResponse.toOutPut(repository.findByName(name).orElseThrow(Message.NOT_FOUND::asBusinessException), PokemonResponse.class);
+	}
+	
 }
