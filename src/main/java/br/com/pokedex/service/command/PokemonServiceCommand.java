@@ -27,15 +27,13 @@ public class PokemonServiceCommand {
 	private PokemonCommandRepository commandRepository;
 	private PokemonQueryRepository queryRepository;
 	
-	private void findByPokemon(String id) {
-		queryRepository.findByPokemonId(id).ifPresent(p->{throw Message.IS_PRESENT.asBusinessException();});
-	}
-	
-	public PokemonResponse save(@Valid PokemonRequest pokemonRequest) {
+		 
+	public PokemonResponse save(@Valid PokemonRequest pokemonRequest){
 		Pokemon pokemon = converterRequest.toEntity(pokemonRequest, Pokemon.class);
-		findByPokemon(pokemon.getPokemonId());
+		queryRepository.findByPokemonId(pokemon.getId()).ifPresent(p->{throw Message.IS_PRESENT.asBusinessException();}); 
+		Pokemon response = commandRepository.save(pokemon);
 		log.info("method=save pokemonId={}",pokemon.getPokemonId());
-		return converterResponse.toOutPut(commandRepository.save(pokemon), PokemonResponse.class);
+		return converterResponse.toOutPut(response, PokemonResponse.class);
 	}
 
 	public PokemonResponse update(@Valid PokemonUpdate pokemonUpdate,Long id) {
@@ -43,11 +41,11 @@ public class PokemonServiceCommand {
 		
 		if(pokemonUpdate.getName() != null) {
 			pokemon.setName(pokemonUpdate.getName());
-		}else if(pokemonUpdate.getTypeOne() != null) {
+		} if(pokemonUpdate.getTypeOne() != null) {
 			pokemon.setTypeOne(pokemonUpdate.getTypeOne());
-		}else if(pokemonUpdate.getTypeTwo() != null) {
+		} if(pokemonUpdate.getTypeTwo() != null) {
 			pokemon.setTypeTwo(pokemonUpdate.getTypeTwo());
-		}else if(pokemon.getDescription() != null) {
+		} if(pokemon.getDescription() != null) {
 			pokemon.setDescription(pokemonUpdate.getDescription());
 		}
 		log.info("method=update id={} pokemonId={}",pokemon.getId(),pokemon.getPokemonId());

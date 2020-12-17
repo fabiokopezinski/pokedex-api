@@ -30,13 +30,19 @@ public class PokemonControllerQuery {
 		return ResponseEntity.ok(service.findByPokemon(pokemonId));
 	}
 	
-	@GetMapping("/type")
-	public ResponseEntity<Page<PokemonResponse>>findByType(@RequestParam(required = false, defaultValue = "") String typeOne, @RequestParam(required = false, defaultValue = "") String typeTwo, @RequestParam(required=false,value="offset",defaultValue = "0")int offset
+	@GetMapping("/types/{typeOne}/{typeTwo}")
+	public ResponseEntity<Page<PokemonResponse>>findByTypeOneAndTypeTwo(@PathVariable("typeOne")String typeOne, @PathVariable("typeTwo")String typeTwo, @RequestParam(required=false,value="offset",defaultValue = "0")int offset
 			,@RequestParam(required = false,value = "limit",defaultValue = "10")int limit) {
-		return ResponseEntity.ok(service.findByType(typeOne,typeTwo, offset, limit));
+		return ResponseEntity.ok(service.findByTypeOneAndTypeTwo(typeOne,typeTwo, offset, limit));
 	}
 	
-	@GetMapping("/name")
+	@GetMapping("/types/{typeOne}")
+	public ResponseEntity<Page<PokemonResponse>>findByTypeOne(@PathVariable("typeOne")String typeOne, @RequestParam(required=false,value="offset",defaultValue = "0")int offset
+			,@RequestParam(required = false,value = "limit",defaultValue = "10")int limit) {
+		return ResponseEntity.ok(service.findByTypeOne(typeOne, offset, limit));
+	}
+	
+	@GetMapping("/names")
 	public ResponseEntity<PokemonResponse>findByName(@RequestParam(required = true) String name) {
 		return ResponseEntity.ok(service.findByName(name));
 	}

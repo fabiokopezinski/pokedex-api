@@ -35,13 +35,16 @@ public class PokemonServiceQuery {
 		return converterResponse.toOutPut(repository.findByPokemonId(String.valueOf(pokemonId)).orElseThrow(Message.NOT_FOUND::asBusinessException), PokemonResponse.class);
 	}
 	
-	public Page<PokemonResponse>findByType(String typeOne, String typeTwo, int offeset, int size){
-		if(typeOne.isBlank() && typeTwo.isBlank()) {
-			return findAll(offeset, size);
-		}
+	public Page<PokemonResponse>findByTypeOneAndTypeTwo(String typeOne, String typeTwo, int offeset, int size){
 		Pageable p = PageRequest.of(offeset, size);
-		log.info("method=findTypePokemon typeOne={} typeTwo={} offset={} size={}",typeOne, typeTwo,offeset,size);
+		log.info("method=findByTypeOneAndTypeTwo typeOne={} typeTwo={} offset={} size={}",typeOne, typeTwo,offeset,size);
 		return converterResponse.toPage(repository.findByTypeOneAndTypeTwo(typeOne, typeTwo, p), PokemonResponse.class);
+	}
+	
+	public Page<PokemonResponse>findByTypeOne(String typeOne,int offeset, int size){
+		Pageable p = PageRequest.of(offeset, size);
+		log.info("method=findByTypeOne typeOne={} offset={} size={}",typeOne,offeset,size);
+		return converterResponse.toPage(repository.findByTypeOne(typeOne, p), PokemonResponse.class);
 	}
 	
 	public PokemonResponse findByName(String name){
