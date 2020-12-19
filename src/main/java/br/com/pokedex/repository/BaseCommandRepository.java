@@ -7,6 +7,4 @@ import org.springframework.data.repository.Repository;
 public interface BaseCommandRepository <T,ID> extends Repository<T, ID>{
 	
 		T save(T ID);
-		
-		void deleteByPokemonId(String ID);
 }

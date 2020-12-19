@@ -6,6 +6,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
 import org.springframework.data.mongodb.core.mapping.FieldType;
 
+import br.com.pokedex.domain.resquest.PokemonUpdate;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -23,20 +24,36 @@ public class Pokemon {
 	@Id
 	private String id;
 
-	@Indexed(unique=true)
-	@Field(name="CD_POKEMON")
+	@Indexed(unique = true)
+	@Field(name = "CD_POKEMON")
 	private String pokemonId;
-	
-	@Field(name="NOME")
+
+	@Field(name = "NOME")
 	private String name;
-	
-	@Field(name="TIPO_UM",targetType = FieldType.STRING)
-	private String  typeOne;
-	
-	@Field(name="TIPO_DOIS",targetType = FieldType.STRING)
-	private String  typeTwo;
-	
-	@Field(name="DESCRICAO")
+
+	@Field(name = "TIPO_UM", targetType = FieldType.STRING)
+	private String typeOne;
+
+	@Field(name = "TIPO_DOIS", targetType = FieldType.STRING)
+	private String typeTwo;
+
+	@Field(name = "DESCRICAO")
 	private String description;
-	
+
+	public void verify(PokemonUpdate pokemonUpdate) {
+
+		if (pokemonUpdate.getName() != null) {
+			this.name = pokemonUpdate.getName();
+		}
+		if (pokemonUpdate.getTypeOne() != null) {
+			this.typeOne = pokemonUpdate.getTypeOne();
+		}
+		if (pokemonUpdate.getTypeTwo() != null) {
+			this.typeTwo = pokemonUpdate.getTypeTwo();
+		}
+		if (pokemonUpdate.getDescription() != null) {
+			this.description = pokemonUpdate.getDescription();
+		}
+	}
+
 }

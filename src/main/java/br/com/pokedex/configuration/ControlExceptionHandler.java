@@ -162,7 +162,7 @@ public class ControlExceptionHandler {
 	public ResponseEntity<Object> handleException(EmptyResultDataAccessException e) {
 
 		BusinessException ex = BusinessException.builder().httpStatusCode(HttpStatus.NOT_FOUND)
-				.message(Message.NOT_FOUND.getMessage()).description(ExceptionResolver.getRootException(e)).build();
+				.message(Message.NOT_FOUND_POKEMON.getMessage()).description(ExceptionResolver.getRootException(e)).build();
 		HttpHeaders responseHeaders = new HttpHeaders();
 
 		return ResponseEntity.status(ex.getHttpStatusCode()).headers(responseHeaders).body(ex.getOnlyBody());

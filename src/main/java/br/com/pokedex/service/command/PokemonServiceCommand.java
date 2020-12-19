@@ -30,30 +30,21 @@ public class PokemonServiceCommand {
 		 
 	public PokemonResponse save(@Valid PokemonRequest pokemonRequest){
 		Pokemon pokemon = converterRequest.toEntity(pokemonRequest, Pokemon.class);
-		queryRepository.findByPokemonId(pokemon.getId()).ifPresent(p->{throw Message.IS_PRESENT.asBusinessException();}); 
+		queryRepository.findByPokemonId(pokemon.getId()).ifPresent(p->{throw Message.IS_PRESENT_POKEMON.asBusinessException();}); 
 		Pokemon response = commandRepository.save(pokemon);
 		log.info("method=save pokemonId={}",pokemon.getPokemonId());
 		return converterResponse.toOutPut(response, PokemonResponse.class);
 	}
 
 	public PokemonResponse update(@Valid PokemonUpdate pokemonUpdate,Long id) {
-		Pokemon pokemon = queryRepository.findByPokemonId(String.valueOf(id)).orElseThrow(Message.NOT_FOUND::asBusinessException);
-		
-		if(pokemonUpdate.getName() != null) {
-			pokemon.setName(pokemonUpdate.getName());
-		} if(pokemonUpdate.getTypeOne() != null) {
-			pokemon.setTypeOne(pokemonUpdate.getTypeOne());
-		} if(pokemonUpdate.getTypeTwo() != null) {
-			pokemon.setTypeTwo(pokemonUpdate.getTypeTwo());
-		} if(pokemon.getDescription() != null) {
-			pokemon.setDescription(pokemonUpdate.getDescription());
-		}
+		Pokemon pokemon = queryRepository.findByPokemonId(String.valueOf(id)).orElseThrow(Message.NOT_FOUND_POKEMON::asBusinessException);
+		pokemon.verify(pokemonUpdate);
 		log.info("method=update id={} pokemonId={}",pokemon.getId(),pokemon.getPokemonId());
 		return converterResponse.toOutPut(commandRepository.save(pokemon), PokemonResponse.class);
 	}
 	
 	public void delete(Long pokemonId) {
-		queryRepository.findByPokemonId(String.valueOf(pokemonId)).orElseThrow(Message.NOT_FOUND::asBusinessException);
+		queryRepository.findByPokemonId(String.valueOf(pokemonId)).orElseThrow(Message.NOT_FOUND_POKEMON::asBusinessException);
 		commandRepository.deleteByPokemonId(String.valueOf(pokemonId));
 		log.info("method=delete pokemonId={}",pokemonId);
 	}

@@ -9,8 +9,6 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.stereotype.Component;
 
-import br.com.pokedex.domain.Pokemon;
-
 @Component
 public class Converter <D,S>{
 
@@ -22,7 +20,7 @@ public class Converter <D,S>{
 		return sourceList.stream().map(entity -> conversor.map(entity, destClass)).collect(Collectors.toList());
 	}
 	
-	public Page<S> toPage (Page<Pokemon> page,Class<S> destClass) {
+	public Page<S> toPage (Page<D> page,Class<S> destClass) {
 		List<S> list = page.stream().map(entity -> conversor.map(entity, destClass)).collect(Collectors.toList());
 		return new PageImpl<S>(list);
 	}
