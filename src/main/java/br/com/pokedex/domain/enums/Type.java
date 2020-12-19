@@ -1,6 +1,6 @@
 package br.com.pokedex.domain.enums;
 
-public enum Tipo {
+public enum Type {
 	
 	FIRE("Fogo"),
 	WATER("Água"),
@@ -23,7 +23,7 @@ public enum Tipo {
 
 	private final String description;
 	
-	private Tipo(String description) {
+	private Type(String description) {
 		this.description=description;
 	}
 	

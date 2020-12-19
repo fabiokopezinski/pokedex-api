@@ -4,15 +4,19 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import org.modelmapper.ModelMapper;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.stereotype.Component;
 
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
+
 @Component
+@AllArgsConstructor
+@NoArgsConstructor
 public class Converter <D,S>{
 
-	@Autowired
+	
 	private ModelMapper conversor;
 
 	public List<S> toArray (List<D> sourceList,Class<S> destClass) {

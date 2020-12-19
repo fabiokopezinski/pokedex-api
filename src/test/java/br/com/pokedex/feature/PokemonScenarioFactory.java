@@ -3,6 +3,7 @@ package br.com.pokedex.feature;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.UUID;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
@@ -52,7 +53,7 @@ public class PokemonScenarioFactory {
 
 	private static PokemonRequest loadPokemonRequest() {
 		return PokemonRequest.builder()
-				.id("1")
+				.id(UUID.randomUUID().toString())
 				.pokemonId("1")
 				.name("Bulbasaur")
 				.typeOne("Grama")

@@ -1,5 +1,6 @@
 package br.com.pokedex.service.command;
 
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
@@ -15,7 +16,6 @@ import org.mockito.junit.MockitoJUnitRunner;
 
 import br.com.pokedex.domain.Pokemon;
 import br.com.pokedex.domain.response.PokemonResponse;
-import br.com.pokedex.domain.resquest.PokemonRequest;
 import br.com.pokedex.exception.BusinessException;
 import br.com.pokedex.feature.PokemonScenarioFactory;
 import br.com.pokedex.repository.command.PokemonCommandRepository;
@@ -28,8 +28,6 @@ public class PokemonServiceCommandTest {
 	@InjectMocks
 	PokemonServiceCommand service;
 	@Mock
-    Converter<PokemonRequest, Pokemon> converterRequest;
-	@Mock
 	Converter<Pokemon, PokemonResponse> converterResponse;
 	@Mock
 	PokemonCommandRepository commandRepository;
@@ -38,11 +36,17 @@ public class PokemonServiceCommandTest {
 		
 	@Test
 	public void save_WhenPokemonRequestIsValid_ExpectedOk() {
-		when(converterRequest.toEntity(any(PokemonRequest.class), any())).thenReturn(PokemonScenarioFactory.POKEMON_VALID.get());
 		when(queryRepository.findByPokemonId(any())).thenReturn(Optional.empty());
 		when(commandRepository.save(any(Pokemon.class))).thenReturn(PokemonScenarioFactory.POKEMON_VALID.get());
-		service.save(PokemonScenarioFactory.POKEMON_REQUEST);
+		when(converterResponse.toOutPut(any(), any())).thenReturn(PokemonScenarioFactory.POKEMON_RESPONSE_NAME.get());
+		assertNotNull(service.save(PokemonScenarioFactory.POKEMON_REQUEST));
 		verify(commandRepository,times(1)).save(any());
+	}
+	
+	@Test(expected = BusinessException.class)
+	public void save_WhenPokemonIdIsExist_ExpectedOk() {
+		when(queryRepository.findByPokemonId(any())).thenReturn(PokemonScenarioFactory.POKEMON_NAME);
+		service.save(PokemonScenarioFactory.POKEMON_REQUEST);
 	}
 	
 	@Test

@@ -6,10 +6,11 @@ import br.com.pokedex.exception.BusinessException;
 
 public enum Message {
 	
-	IS_PRESENT_POKEMON("Pokemon já está cadastrado",HttpStatus.BAD_REQUEST),
 	NOT_FOUND_USER("Usuário não encontrado",HttpStatus.NOT_FOUND),
 	IS_PRESENT_USER("Usuário já existe",HttpStatus.BAD_REQUEST),
 	NICKNAME_IS_USED_USER("Já existe um usuário com esse nickname",HttpStatus.BAD_REQUEST),
+	EMAIL_ISPRESENT_USER("Email já existente",HttpStatus.BAD_REQUEST),
+	IS_PRESENT_POKEMON("Pokemon já está cadastrado",HttpStatus.BAD_REQUEST),
 	NOT_FOUND_POKEMON("Pokemon não encontrado", HttpStatus.NOT_FOUND);
 	
 	private String value;

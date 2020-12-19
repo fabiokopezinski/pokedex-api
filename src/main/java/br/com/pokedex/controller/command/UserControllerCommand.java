@@ -16,7 +16,9 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import br.com.pokedex.domain.response.UserResponse;
 import br.com.pokedex.domain.resquest.UserRequest;
 import br.com.pokedex.domain.resquest.UserUpdate;
+import br.com.pokedex.exception.BusinessException;
 import br.com.pokedex.service.command.UserServiceCommand;
+import javassist.NotFoundException;
 import lombok.AllArgsConstructor;
 
 @RequestMapping("/users")
@@ -35,7 +37,7 @@ public class UserControllerCommand {
 	}
 	
 	@PatchMapping("/{userId}")
-	public ResponseEntity<UserResponse>update(@PathVariable("userId")String userId,@RequestBody UserUpdate userUpdate){
+	public ResponseEntity<UserResponse>update(@PathVariable("userId")String userId,@RequestBody UserUpdate userUpdate) throws BusinessException, NotFoundException{
 		return ResponseEntity.ok(service.update(userUpdate, userId));
 	}
 	

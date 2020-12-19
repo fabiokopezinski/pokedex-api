@@ -22,14 +22,13 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class PokemonServiceCommand {
 
-	private Converter<PokemonRequest, Pokemon> converterRequest;
 	private Converter<Pokemon, PokemonResponse> converterResponse;
 	private PokemonCommandRepository commandRepository;
 	private PokemonQueryRepository queryRepository;
 	
 		 
 	public PokemonResponse save(@Valid PokemonRequest pokemonRequest){
-		Pokemon pokemon = converterRequest.toEntity(pokemonRequest, Pokemon.class);
+		Pokemon pokemon =Pokemon.of(pokemonRequest);
 		queryRepository.findByPokemonId(pokemon.getId()).ifPresent(p->{throw Message.IS_PRESENT_POKEMON.asBusinessException();}); 
 		Pokemon response = commandRepository.save(pokemon);
 		log.info("method=save pokemonId={}",pokemon.getPokemonId());

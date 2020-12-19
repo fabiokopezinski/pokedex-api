@@ -3,6 +3,7 @@ package br.com.pokedex.domain.resquest;
 import javax.validation.constraints.Size;
 
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -10,6 +11,7 @@ import lombok.Setter;
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
+@Builder
 @Setter
 public class UserUpdate {
 

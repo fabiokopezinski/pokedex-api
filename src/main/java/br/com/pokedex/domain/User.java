@@ -8,8 +8,10 @@ import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import br.com.pokedex.domain.resquest.UserRequest;
 import br.com.pokedex.domain.resquest.UserUpdate;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -18,6 +20,7 @@ import lombok.Setter;
 @NoArgsConstructor
 @Getter
 @Setter
+@Builder
 @Document(collection = "user")
 public class User {
 
@@ -43,6 +46,15 @@ public class User {
 			listPokemons = new ArrayList<Pokemon>();
 		}
 		listPokemons.add(pokemon);
+	}
+	
+	public static User of(UserRequest user) {
+		return User.builder()
+				.userId(user.getId())
+				.name(user.getName())
+				.nickname(user.getNickname())
+				.email(user.getEmail())
+				.build();
 	}
 	
 	public void  verify(UserUpdate userUpdate) {

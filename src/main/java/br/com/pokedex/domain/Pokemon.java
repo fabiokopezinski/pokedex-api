@@ -6,6 +6,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
 import org.springframework.data.mongodb.core.mapping.FieldType;
 
+import br.com.pokedex.domain.resquest.PokemonRequest;
 import br.com.pokedex.domain.resquest.PokemonUpdate;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -40,6 +41,17 @@ public class Pokemon {
 	@Field(name = "DESCRICAO")
 	private String description;
 
+	
+	public static Pokemon of(PokemonRequest request) {
+		return Pokemon.builder()
+				.pokemonId(request.getPokemonId())
+				.name(request.getName())
+				.typeOne(request.getTypeOne())
+				.typeTwo(request.getTypeTwo())
+				.description(request.getDescription())
+				.build();
+	}
+	
 	public void verify(PokemonUpdate pokemonUpdate) {
 
 		if (pokemonUpdate.getName() != null) {
