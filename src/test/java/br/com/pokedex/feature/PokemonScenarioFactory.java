@@ -18,6 +18,7 @@ public class PokemonScenarioFactory {
 	public static final Long POKEMON_ID_VALID=1L;
 	public static final Long POKEMON_ID_INVALID=-1L;
 	public static final PokemonUpdate POKEMON_UPDATE=loadPokemonUpdate();
+	public static final PokemonUpdate POKEMON_UPDATE_IF_NOT_MODI=loadPokemonUpdateNotModi();
 	public static final PokemonRequest POKEMON_REQUEST=loadPokemonRequest();
 	public static final String POKEMON_NAME_PARAM_VALID="Bulbasaur";
 	public static final String POKEMON_NAME_PARAM_INVALID="Goku";
@@ -27,6 +28,12 @@ public class PokemonScenarioFactory {
 	public static final Optional<Pokemon> POKEMON_VALID=loadPokemonValid();
 	public static final Optional<Pokemon> POKEMON_NAME=loadPokemonNameValid();
 	public static final Optional<PokemonResponse> POKEMON_RESPONSE_NAME=loadPokemonResponseNameValid();
+	public static final Pokemon POKEMON_NEW=loadPokemonNew();
+	public static final Pokemon POKEMON_SET=loadPokemonSet();
+	public static final Pokemon POKEMON_GET=loadPokemonGet();
+	public static final Pokemon POKEMON=loadPokemon();
+	public static final Pokemon POKEMON_BUILDER=loadPokemonBuilder();
+	public static final String POKEMON_BUILDER_TO_STRING=loadPokemonBuilderToString();
 
 
 
@@ -38,6 +45,79 @@ public class PokemonScenarioFactory {
 				.typeTwo("T2")
 				.description("DESCRIPTION")
 				.build());
+	}
+
+
+	private static String loadPokemonBuilderToString() {
+		return Pokemon.builder()
+				.id("1")
+				.pokemonId("2")
+				.typeOne("T1")
+				.typeTwo("T2")
+				.description("DESCRIPTION")
+				.build().toString();
+	}
+
+
+	private static PokemonUpdate loadPokemonUpdateNotModi() {
+		return new PokemonUpdate();
+	}
+
+
+	private static Pokemon loadPokemonBuilder() {
+		return Pokemon.builder()
+				.id("1")
+				.pokemonId("2")
+				.typeOne("T1")
+				.typeTwo("T2")
+				.description("DESCRIPTION")
+				.build();
+	}
+
+
+	private static Pokemon loadPokemon() {
+		return Pokemon.builder()
+				.id("1")
+				.pokemonId("2")
+				.typeOne("T1")
+				.typeTwo("T2")
+				.description("DESCRIPTION")
+				.build();
+	}
+
+
+	private static Pokemon loadPokemonGet() {
+		Pokemon pokemon=new Pokemon();
+		pokemon.getId();
+		pokemon.getPokemonId();
+		pokemon.getName();
+		pokemon.getTypeOne();
+		pokemon.getTypeTwo();
+		pokemon.getDescription();
+		return pokemon;
+	}
+
+
+	private static Pokemon loadPokemonSet() {
+		Pokemon pokemon=new Pokemon();
+		pokemon.setId("1");
+		pokemon.setPokemonId("1");
+		pokemon.setName("teste");
+		pokemon.setTypeOne("T1");
+		pokemon.setTypeTwo("T2");
+		pokemon.setDescription("TESTE");
+		return pokemon;
+	}
+
+
+	private static Pokemon loadPokemonNew() {
+		return Pokemon.builder()
+				.id("1")
+				.pokemonId("1")
+				.typeOne("T1")
+				.typeTwo("T2")
+				.description("DESCRIPTION")
+				.build();
 	}
 
 

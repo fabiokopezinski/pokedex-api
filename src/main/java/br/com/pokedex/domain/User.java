@@ -12,6 +12,7 @@ import br.com.pokedex.domain.resquest.UserRequest;
 import br.com.pokedex.domain.resquest.UserUpdate;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -19,6 +20,7 @@ import lombok.Setter;
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
+@EqualsAndHashCode(of="userId",callSuper = false)
 @Setter
 @Builder
 @Document(collection = "user")

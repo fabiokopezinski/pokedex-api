@@ -227,7 +227,6 @@
 						<exclude>br/com/pokedex/utils/*/**</exclude>
 						<exclude>br/com/pokedex/domain/request/*/**</exclude>
 						<exclude>br/com/pokedex/domain/response/*/**</exclude>
-						<exclude>br/com/pokedex/domain/*/**</exclude>
 						<exclude>br/com/pokedex/enums/*/**</exclude>
 					</excludes>
 				</configuration>

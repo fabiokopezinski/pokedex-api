@@ -18,7 +18,27 @@ public class UserScenarioFactory {
 	public static final User USER_SAVE=loadUser();
 	public static final User USER_UPDATE_SAVE=loadUpdateSave();
 	public static final UserUpdate USER_UPDATE=loadUpdate();
+	public static final User USER=loadUser();
+	public static final User USER_NEW=loadUserNew();
+	public static final User USER_BUILDER=loadUserBuilder();
+	public static final User USER_SET=loadSetUser();
+	public static final User USER_GET=loadGetUser();
+	public static final UserUpdate USER_UPDATE_NOT_MOD=loadUpdateNotMod();
 	
+	private static User loadGetUser() {
+		User user=new User();
+		user.getUserId();
+		user.getName();
+		user.getEmail();
+		user.getNickname();
+		user.getListPokemons();
+		return user;
+	}
+	
+	private static UserUpdate loadUpdateNotMod() {
+		return UserUpdate.builder().build();
+	}
+
 	private static UserResponse loadUserResponse() {
 		List<Pokemon> listPokemon=new ArrayList<>();
 
@@ -32,6 +52,42 @@ public class UserScenarioFactory {
 				.build();
 	}
 	
+	private static User loadSetUser() {
+		User user=new User();
+		user.setUserId(UUID.randomUUID().toString());
+		user.setName("TESTE");
+		user.setEmail("teste@este.com.br");
+		user.setNickname("tt");
+		return user;
+	}
+
+	private static User loadUserBuilder() {
+		List<Pokemon> listPokemon=new ArrayList<>();
+
+		listPokemon.add(PokemonScenarioFactory.POKEMON_VALID.get());
+		
+		return User.builder()
+				.userId("f4sad56f4dsafsad4f6as5f4")
+				.email("teste@test.com")
+				.nickname("tst")
+				.listPokemons(listPokemon)
+				.build();
+	}
+
+	private static User loadUserNew() {
+		List<Pokemon> listPokemon=new ArrayList<>();
+
+		listPokemon.add(PokemonScenarioFactory.POKEMON_VALID.get());
+		
+		return User.builder()
+				.userId("f4sad56f4dsafsad4f6as5fs4")
+				.email("teste@test.com")
+				.nickname("tste")
+				.listPokemons(listPokemon)
+				.build();
+	}
+	
+
 	private static User loadUpdateSave() {
 		List<Pokemon> listPokemon=new ArrayList<>();
 
