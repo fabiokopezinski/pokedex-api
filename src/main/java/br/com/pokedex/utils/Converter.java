@@ -26,7 +26,7 @@ public class Converter <D,S>{
 	
 	public Page<S> toPage (Page<D> page,Class<S> destClass) {
 		List<S> list = page.stream().map(entity -> conversor.map(entity, destClass)).collect(Collectors.toList());
-		return new PageImpl<S>(list);
+		return new PageImpl<>(list);
 	}
 
 	public S toEntity(D sourceClass, Class<S> destClass) {

@@ -15,7 +15,7 @@ import br.com.pokedex.domain.resquest.PokemonUpdate;
 
 public class PokemonScenarioFactory {
 
-	public static final Long POKEMON_ID_VALID=1L;
+	public static final Long POKEMON_ID_VALID=1L; 
 	public static final Long POKEMON_ID_INVALID=-1L;
 	public static final PokemonUpdate POKEMON_UPDATE=loadPokemonUpdate();
 	public static final PokemonUpdate POKEMON_UPDATE_IF_NOT_MODI=loadPokemonUpdateNotModi();
