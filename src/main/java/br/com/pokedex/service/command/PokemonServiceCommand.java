@@ -29,7 +29,7 @@ public class PokemonServiceCommand {
 		 
 	public PokemonResponse save(@Valid PokemonRequest pokemonRequest){
 		Pokemon pokemon =Pokemon.of(pokemonRequest);
-		queryRepository.findByPokemonId(pokemon.getId()).ifPresent(p->{throw Message.IS_PRESENT_POKEMON.asBusinessException();}); 
+		queryRepository.findByPokemonId(pokemon.getPokemonId()).ifPresent(p->{throw Message.IS_PRESENT_POKEMON.asBusinessException();}); 
 		Pokemon response = commandRepository.save(pokemon);
 		log.info("method=save pokemonId={}",pokemon.getPokemonId());
 		return converterResponse.toOutPut(response, PokemonResponse.class);

@@ -1,8 +1,13 @@
 package br.com.pokedex.feature;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
+
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
 
 import br.com.pokedex.domain.Pokemon;
 import br.com.pokedex.domain.User;
@@ -24,6 +29,17 @@ public class UserScenarioFactory {
 	public static final User USER_SET=loadSetUser();
 	public static final User USER_GET=loadGetUser();
 	public static final UserUpdate USER_UPDATE_NOT_MOD=loadUpdateNotMod();
+	public static final Page<User> USER_DEFAULT_PAGE = loadUserDefaultPage();
+	public static final Page<UserResponse> USER_RESPONSE_DEFAULT_PAGE = loadUserResponseDefaultPage();
+	public static final Optional<User> USER_VALID = loadUserNickname();
+	public static final Optional<UserResponse> USER_RESPONSE_VALID = loadUserResponseNickname();
+	public static final String USER_NICKNAME_VALID = "teste";
+	public static final String USER_NICKNAME_INVALID = "invalido";
+	public static final String USER_EMAIL_VALID = "teste@gmail.com";
+	public static final String USER_EMAIL_INVALID = "invalido@gmail.com";
+	public static final String USER_NAME_VALID = "Teste";
+	public static final String USER_NAME_INVALID = "Invalido";
+	
 	
 	private static User loadGetUser() {
 		User user=new User();
@@ -45,7 +61,7 @@ public class UserScenarioFactory {
 		listPokemon.add(PokemonScenarioFactory.POKEMON_VALID.get());
 		
 		return UserResponse.builder()
-				.id("f4sad56f4dsafsad4f6as5f4")
+				.id(UUID.randomUUID().toString())
 				.email("teste@test.com")
 				.nickname("tst")
 				.listPokemons(listPokemon)
@@ -129,4 +145,35 @@ public class UserScenarioFactory {
 				.listPokemons(listPokemon)
 				.build();
 	}
+	
+	private static Page<User> loadUserDefaultPage() {
+		User user = new User(ID_VALID, "Teste", "teste@gmail.com", "teste", null);
+		return new PageImpl<>(Arrays.asList(user));		
+	}
+	
+	private static Page<UserResponse> loadUserResponseDefaultPage() {
+		UserResponse user = new UserResponse(ID_VALID, "Teste", "teste@gmail.com", "teste", null);
+		return new PageImpl<>(Arrays.asList(user));
+	}
+	
+	private static Optional<User> loadUserNickname() {
+		return Optional.of(User.builder()
+				.userId(ID_VALID)
+				.email("teste@gmail.com")
+				.name("Teste")
+				.nickname("teste")
+				.listPokemons(null)
+				.build());
+	}
+	
+	private static Optional<UserResponse> loadUserResponseNickname() {
+		return Optional.of(UserResponse.builder()
+				.id(ID_VALID)
+				.email("teste@gmail.com")
+				.name("Teste")
+				.nickname("teste")
+				.listPokemons(null)
+				.build());
+	}
+	
 }
