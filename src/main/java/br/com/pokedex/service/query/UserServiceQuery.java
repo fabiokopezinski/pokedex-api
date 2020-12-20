@@ -44,5 +44,5 @@ public class UserServiceQuery {
 		log.info("method=findByName name={}", name);
 		return converterResponse.toOutPut(repository.findByName(name).orElseThrow(Message.NOT_FOUND_USER::asBusinessException), UserResponse.class);
 	}
-
+	
 }
