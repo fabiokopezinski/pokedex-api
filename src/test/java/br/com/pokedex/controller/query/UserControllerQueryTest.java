@@ -29,7 +29,7 @@ public class UserControllerQueryTest {
     private UserServiceQuery service;
 
     @Test
-    public void findAll_WhenSendOffesetAndLimitDefault_ExpectedOk() throws Exception {
+    public void findAll_WhenSendOffsetAndLimitDefault_ExpectedOk() throws Exception {
         given(service.findAll(0, 10)).willReturn(UserScenarioFactory.USER_RESPONSE_DEFAULT_PAGE);
 		mockMvc.perform(get("/users")
 				.param("offset", "0")

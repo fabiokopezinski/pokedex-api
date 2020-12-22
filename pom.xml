@@ -221,13 +221,14 @@
 				</executions>
 					<configuration>
 					<excludes>
+						<exclude>br/com/pokedex/configuration/*/**</exclude>
 						<exclude>br/com/pokedex/exception/*/**</exclude>
 						<exclude>br/com/pokedex/repository/*/**</exclude>
 						<exclude>br/com/pokedex/validations/*/**</exclude>
 						<exclude>br/com/pokedex/utils/*/**</exclude>
+						<exclude>br/com/pokedex/domain/enums/*/**</exclude>
 						<exclude>br/com/pokedex/domain/request/*/**</exclude>
 						<exclude>br/com/pokedex/domain/response/*/**</exclude>
-						<exclude>br/com/pokedex/enums/*/**</exclude>
 					</excludes>
 				</configuration>
 			</plugin>
