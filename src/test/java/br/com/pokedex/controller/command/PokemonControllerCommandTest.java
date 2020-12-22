@@ -20,7 +20,7 @@ import org.springframework.test.web.servlet.MockMvc;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-import br.com.pokedex.domain.resquest.PokemonUpdate;
+import br.com.pokedex.domain.request.PokemonUpdate;
 import br.com.pokedex.feature.PokemonScenarioFactory;
 import br.com.pokedex.service.command.PokemonServiceCommand;
 

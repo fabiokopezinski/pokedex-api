@@ -6,9 +6,9 @@ import org.springframework.stereotype.Service;
 import org.springframework.validation.annotation.Validated;
 
 import br.com.pokedex.domain.Pokemon;
+import br.com.pokedex.domain.request.PokemonRequest;
+import br.com.pokedex.domain.request.PokemonUpdate;
 import br.com.pokedex.domain.response.PokemonResponse;
-import br.com.pokedex.domain.resquest.PokemonRequest;
-import br.com.pokedex.domain.resquest.PokemonUpdate;
 import br.com.pokedex.repository.command.PokemonCommandRepository;
 import br.com.pokedex.repository.query.PokemonQueryRepository;
 import br.com.pokedex.utils.Converter;

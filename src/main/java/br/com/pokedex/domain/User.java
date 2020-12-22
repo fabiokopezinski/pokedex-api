@@ -8,8 +8,8 @@ import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-import br.com.pokedex.domain.resquest.UserRequest;
-import br.com.pokedex.domain.resquest.UserUpdate;
+import br.com.pokedex.domain.request.UserRequest;
+import br.com.pokedex.domain.request.UserUpdate;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.EqualsAndHashCode;

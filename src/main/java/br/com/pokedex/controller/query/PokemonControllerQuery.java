@@ -8,24 +8,30 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import br.com.pokedex.annotation.ListPokemonsGetCodeStandard;
+import br.com.pokedex.annotation.PokemonsGetIdCodeStandard;
 import br.com.pokedex.domain.response.PokemonResponse;
 import br.com.pokedex.service.query.PokemonServiceQuery;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.AllArgsConstructor;
 
 @RequestMapping("/pokemons")
 @RestController
+@Tag(name = "Pokemons")
 @AllArgsConstructor
 public class PokemonControllerQuery {
 
 	private PokemonServiceQuery service;
 	
 	@GetMapping
+	@ListPokemonsGetCodeStandard
 	public ResponseEntity<Page<PokemonResponse>>findAll(@RequestParam(required=false,value="offset",defaultValue = "0")int offset
 			,@RequestParam(required = false,value = "limit",defaultValue = "10")int limit){
 		return ResponseEntity.ok(service.findAll(offset,limit));
 	}
 	
 	@GetMapping("/{pokemonId}")
+	@PokemonsGetIdCodeStandard
 	public ResponseEntity<PokemonResponse>findByPokemonId(@PathVariable("pokemonId")Long pokemonId){
 		return ResponseEntity.ok(service.findByPokemon(pokemonId));
 	}

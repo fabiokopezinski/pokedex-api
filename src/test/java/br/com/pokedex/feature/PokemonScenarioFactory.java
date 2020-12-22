@@ -9,9 +9,9 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 
 import br.com.pokedex.domain.Pokemon;
+import br.com.pokedex.domain.request.PokemonRequest;
+import br.com.pokedex.domain.request.PokemonUpdate;
 import br.com.pokedex.domain.response.PokemonResponse;
-import br.com.pokedex.domain.resquest.PokemonRequest;
-import br.com.pokedex.domain.resquest.PokemonUpdate;
 
 public class PokemonScenarioFactory {
 

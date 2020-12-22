@@ -13,9 +13,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import br.com.pokedex.domain.request.PokemonRequest;
+import br.com.pokedex.domain.request.PokemonUpdate;
 import br.com.pokedex.domain.response.PokemonResponse;
-import br.com.pokedex.domain.resquest.PokemonRequest;
-import br.com.pokedex.domain.resquest.PokemonUpdate;
 import br.com.pokedex.service.command.PokemonServiceCommand;
 import lombok.AllArgsConstructor;
 

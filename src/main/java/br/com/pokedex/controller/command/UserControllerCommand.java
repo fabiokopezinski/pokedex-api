@@ -13,9 +13,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import br.com.pokedex.domain.request.UserRequest;
+import br.com.pokedex.domain.request.UserUpdate;
 import br.com.pokedex.domain.response.UserResponse;
-import br.com.pokedex.domain.resquest.UserRequest;
-import br.com.pokedex.domain.resquest.UserUpdate;
 import br.com.pokedex.exception.BusinessException;
 import br.com.pokedex.service.command.UserServiceCommand;
 import javassist.NotFoundException;
