@@ -8,7 +8,8 @@ import java.lang.annotation.Target;
 
 import org.springframework.http.MediaType;
 
-import br.com.pokedex.domain.response.PokemonResponse;
+import br.com.pokedex.domain.response.UserResponse;
+import br.com.pokedex.exception.BusinessException.BusinessExceptionBody;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
@@ -18,10 +19,11 @@ import io.swagger.v3.oas.annotations.responses.ApiResponses;
 @Target({ ElementType.METHOD, ElementType.ANNOTATION_TYPE, ElementType.TYPE })
 @Retention(RetentionPolicy.RUNTIME)
 @ApiResponses(value = {
-		@ApiResponse(responseCode = "200", description = "Retorna dos pokemonss existentes", content = @Content(mediaType = MediaType.APPLICATION_JSON_VALUE,schema = @Schema(implementation = PokemonResponse.class))),
+		@ApiResponse(responseCode = "200", description = "Retorna os pokemon", content = @Content(mediaType = MediaType.APPLICATION_JSON_VALUE,schema = @Schema(implementation = UserResponse.class))),
 		@ApiResponse(responseCode = "401", description = "Acesso não autorizado",content = @Content(mediaType = MediaType.APPLICATION_JSON_VALUE)),
+		@ApiResponse(responseCode = "404", description = "Usuário não encontrado",content = @Content(mediaType = MediaType.APPLICATION_JSON_VALUE,schema = @Schema(implementation = BusinessExceptionBody.class))),
 		@ApiResponse(responseCode = "500", description = "Sistema indisponivel",content=@Content(mediaType = MediaType.APPLICATION_JSON_VALUE)) })
-@Operation(summary = Constants.POKEMONS_LIST_SUMMARY, description = Constants.POKEMONS_LIST_DESCRIPTION)
-public @interface ListPokemonsGetCodeStandard {
+@Operation(summary = Constants.USER_SEARCH_NICKNAME_SUMMARRY, description = Constants.USER_SEARCH_NICKNAME_DESCRIPTION)
+public @interface UserResponseGetNicknameCodeStardand {
     
 }

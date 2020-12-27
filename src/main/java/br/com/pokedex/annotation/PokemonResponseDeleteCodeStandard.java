@@ -8,7 +8,6 @@ import java.lang.annotation.Target;
 
 import org.springframework.http.MediaType;
 
-import br.com.pokedex.domain.response.PokemonResponse;
 import br.com.pokedex.exception.BusinessException.BusinessExceptionBody;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
@@ -19,11 +18,10 @@ import io.swagger.v3.oas.annotations.responses.ApiResponses;
 @Target({ ElementType.METHOD, ElementType.ANNOTATION_TYPE, ElementType.TYPE })
 @Retention(RetentionPolicy.RUNTIME)
 @ApiResponses(value = {
-		@ApiResponse(responseCode = "200", description = "Retorna os pokemon", content = @Content(mediaType = MediaType.APPLICATION_JSON_VALUE,schema = @Schema(implementation = PokemonResponse.class))),
-		@ApiResponse(responseCode = "401", description = "Acesso não autorizado",content = @Content(mediaType = MediaType.APPLICATION_JSON_VALUE)),
+		@ApiResponse(responseCode = "201", description = "Pokemon deletado", content = @Content(mediaType = MediaType.APPLICATION_JSON_VALUE)),
 		@ApiResponse(responseCode = "404", description = "Pokemon não encontrado",content = @Content(mediaType = MediaType.APPLICATION_JSON_VALUE,schema = @Schema(implementation = BusinessExceptionBody.class))),
-		@ApiResponse(responseCode = "500", description = "Sistema indisponivel",content=@Content(mediaType = MediaType.APPLICATION_JSON_VALUE)) })
-@Operation(summary = Constants.POKEMON_SEARCH_SUMMARRY, description = Constants.POKEMON_SEARCH_DESCRIPTION)
-public @interface PokemonsGetIdCodeStandard {
+        @ApiResponse(responseCode = "500", description = "Sistema indisponivel",content=@Content(mediaType = MediaType.APPLICATION_JSON_VALUE)) })
+@Operation(summary = Constants.POKEMON_DELETE_SUMMARY, description = Constants.POKEMON_DELETE_DESCRIPTION)   
+public @interface PokemonResponseDeleteCodeStandard {
     
 }

@@ -9,23 +9,26 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
+import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
-
 import br.com.pokedex.domain.request.PokemonUpdate;
 import br.com.pokedex.feature.PokemonScenarioFactory;
+import br.com.pokedex.service.UserPermissionService;
 import br.com.pokedex.service.command.PokemonServiceCommand;
 
 @RunWith(SpringRunner.class)
 @WebMvcTest(PokemonControllerCommand.class)
+@WithMockUser(username = "fabiokopezinski@gmail.com", password = "124578", roles = "ADMIN")
 public class PokemonControllerCommandTest {
 	
 	@Autowired
@@ -33,6 +36,9 @@ public class PokemonControllerCommandTest {
 	
 	@MockBean
 	private PokemonServiceCommand service;
+
+	@MockBean
+	private UserPermissionService servicePermission;
 	
 	@Test
 	public void save_WhenPokemonRequestIsValid_ExpectedCreated() throws Exception {

@@ -22,12 +22,9 @@ public class PokemonResponse {
 	
 	private String name;
 	
-
 	private String  typeOne;
-	
 	
 	private String  typeTwo;
 	
-
 	private String description;
 }

@@ -12,14 +12,17 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
+import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 
 import br.com.pokedex.feature.UserScenarioFactory;
+import br.com.pokedex.service.UserPermissionService;
 import br.com.pokedex.service.query.UserServiceQuery;
 
 @RunWith(SpringRunner.class)
 @WebMvcTest(UserControllerQuery.class)
+@WithMockUser(username = "fabiokopezinski@gmail.com", password = "124578", roles = "ADMIN")
 public class UserControllerQueryTest {
 
     @Autowired
@@ -27,6 +30,10 @@ public class UserControllerQueryTest {
 
     @MockBean
     private UserServiceQuery service;
+
+    @MockBean
+	private UserPermissionService servicePermission;
+    
 
     @Test
     public void findAll_WhenSendOffsetAndLimitDefault_ExpectedOk() throws Exception {

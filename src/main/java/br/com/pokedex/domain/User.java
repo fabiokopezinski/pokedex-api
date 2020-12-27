@@ -17,6 +17,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
@@ -42,6 +43,7 @@ public class User {
 	@DBRef(lazy = true)
 	@Indexed(name = "LISTA_POKEMON")
 	private List<Pokemon> listPokemons;
+
 
 	public void addPokemon(Pokemon pokemon) {
 		if (listPokemons == null) {

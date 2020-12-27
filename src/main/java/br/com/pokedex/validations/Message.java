@@ -7,6 +7,7 @@ import br.com.pokedex.exception.BusinessException;
 public enum Message {
 	
 	NOT_FOUND_USER("Usuário não encontrado",HttpStatus.NOT_FOUND),
+	TOKEN_ERROR("Erro ao validar o token",HttpStatus.UNAUTHORIZED),
 	IS_PRESENT_USER("Usuário já existe",HttpStatus.BAD_REQUEST),
 	NICKNAME_IS_USED_USER("Já existe um usuário com esse nickname",HttpStatus.BAD_REQUEST),
 	EMAIL_ISPRESENT_USER("Email já existente",HttpStatus.BAD_REQUEST),

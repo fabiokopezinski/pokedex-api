@@ -9,6 +9,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.com.pokedex.annotation.ListPokemonsGetCodeStandard;
+import br.com.pokedex.annotation.PokemonResponseGetByTypeOneCodeStandard;
+import br.com.pokedex.annotation.PokemonResponseGetByTypeOneAndTypeTwo;
+import br.com.pokedex.annotation.PokemonResponseGetNameCodeStandard;
 import br.com.pokedex.annotation.PokemonsGetIdCodeStandard;
 import br.com.pokedex.domain.response.PokemonResponse;
 import br.com.pokedex.service.query.PokemonServiceQuery;
@@ -37,18 +40,21 @@ public class PokemonControllerQuery {
 	}
 	
 	@GetMapping("/types/{typeOne}/{typeTwo}")
+	@PokemonResponseGetByTypeOneAndTypeTwo
 	public ResponseEntity<Page<PokemonResponse>>findByTypeOneAndTypeTwo(@PathVariable("typeOne")String typeOne, @PathVariable("typeTwo")String typeTwo, @RequestParam(required=false,value="offset",defaultValue = "0")int offset
 			,@RequestParam(required = false,value = "limit",defaultValue = "10")int limit) {
 		return ResponseEntity.ok(service.findByTypeOneAndTypeTwo(typeOne,typeTwo, offset, limit));
 	}
 	
 	@GetMapping("/types/{typeOne}")
+	@PokemonResponseGetByTypeOneCodeStandard
 	public ResponseEntity<Page<PokemonResponse>>findByTypeOne(@PathVariable("typeOne")String typeOne, @RequestParam(required=false,value="offset",defaultValue = "0")int offset
 			,@RequestParam(required = false,value = "limit",defaultValue = "10")int limit) {
 		return ResponseEntity.ok(service.findByTypeOne(typeOne, offset, limit));
 	}
 	
 	@GetMapping("/names")
+	@PokemonResponseGetNameCodeStandard
 	public ResponseEntity<PokemonResponse>findByName(@RequestParam(required = true) String name) {
 		return ResponseEntity.ok(service.findByName(name));
 	}

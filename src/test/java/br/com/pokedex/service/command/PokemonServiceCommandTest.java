@@ -13,6 +13,7 @@ import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.MockitoJUnitRunner;
+import org.springframework.security.test.context.support.WithMockUser;
 
 import br.com.pokedex.domain.Pokemon;
 import br.com.pokedex.domain.response.PokemonResponse;
@@ -20,9 +21,11 @@ import br.com.pokedex.exception.BusinessException;
 import br.com.pokedex.feature.PokemonScenarioFactory;
 import br.com.pokedex.repository.command.PokemonCommandRepository;
 import br.com.pokedex.repository.query.PokemonQueryRepository;
+import br.com.pokedex.service.UserPermissionService;
 import br.com.pokedex.utils.Converter;
 
 @RunWith(MockitoJUnitRunner.class)
+@WithMockUser(username = "fabiokopezinski@gmail.com", password = "124578", roles = "ADMIN")
 public class PokemonServiceCommandTest {
 
 	@InjectMocks
@@ -33,6 +36,8 @@ public class PokemonServiceCommandTest {
 	PokemonCommandRepository commandRepository;
 	@Mock
 	PokemonQueryRepository queryRepository;
+	@Mock
+	UserPermissionService servicePermission;
 		
 	@Test
 	public void save_WhenPokemonRequestIsValid_ExpectedOk() {

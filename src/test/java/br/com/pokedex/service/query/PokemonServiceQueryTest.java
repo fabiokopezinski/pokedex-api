@@ -13,15 +13,18 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.MockitoJUnitRunner;
 import org.springframework.data.domain.Pageable;
+import org.springframework.security.test.context.support.WithMockUser;
 
 import br.com.pokedex.domain.Pokemon;
 import br.com.pokedex.domain.response.PokemonResponse;
 import br.com.pokedex.exception.BusinessException;
 import br.com.pokedex.feature.PokemonScenarioFactory;
 import br.com.pokedex.repository.query.PokemonQueryRepository;
+import br.com.pokedex.service.UserPermissionService;
 import br.com.pokedex.utils.Converter;
 
 @RunWith(MockitoJUnitRunner.class)
+@WithMockUser(username = "fabiokopezinski@gmail.com", password = "124578", roles = "ADMIN")
 public class PokemonServiceQueryTest {
 
 	@InjectMocks
@@ -32,6 +35,9 @@ public class PokemonServiceQueryTest {
 	
 	@Mock
 	Converter<Pokemon, PokemonResponse> converter;
+
+	@Mock
+	UserPermissionService servicePermission;
 	
 	@Test
 	public void findAll_WhenOffsetAndSizeIsDefault() {

@@ -20,4 +20,6 @@ public interface UserQueryRepository extends BaseQueryRepository<User,String>, P
 		Optional<User> findByEmail(String email);
 		
 		Optional<User> findByName(String name);
+
+		
 }

@@ -72,6 +72,13 @@
 			<scope>test</scope>
 		</dependency>
 		<dependency>
+			<groupId>org.springframework.security</groupId>
+			<artifactId>spring-security-test</artifactId>
+			<version>4.2.2.RELEASE</version>
+			<scope>test</scope>
+		</dependency>
+		
+		<dependency>
 			<groupId>org.apache.httpcomponents</groupId>
 			<artifactId>httpclient</artifactId>
 			<version>4.5</version>
@@ -119,6 +126,16 @@
 			<groupId>org.projectlombok</groupId>
 			<artifactId>lombok</artifactId>
 			<optional>true</optional>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-security</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>io.jsonwebtoken</groupId>
+			<artifactId>jjwt</artifactId>
+			<version>0.7.0</version>
 		</dependency>
 	</dependencies>
 
@@ -235,6 +252,7 @@
 						<exclude>br/com/pokedex/domain/request/*/**</exclude>
 						<exclude>br/com/pokedex/domain/response/*/**</exclude>
 						<exclude>br/com/pokedex/PokedexApplication.*</exclude>
+						<exclude>br/com/pokedex/service/UserPermissionService.*</exclude>
 					</excludes>
 				</configuration>
 			</plugin>

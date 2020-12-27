@@ -13,20 +13,26 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import br.com.pokedex.annotation.PokemonResponseDeleteCodeStandard;
+import br.com.pokedex.annotation.PokemonsResponsePostCodeStandard;
+import br.com.pokedex.annotation.PokemonsResponseUpdateCodeStandard;
 import br.com.pokedex.domain.request.PokemonRequest;
 import br.com.pokedex.domain.request.PokemonUpdate;
 import br.com.pokedex.domain.response.PokemonResponse;
 import br.com.pokedex.service.command.PokemonServiceCommand;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.AllArgsConstructor;
 
 @RequestMapping("/pokemons")
 @AllArgsConstructor
+@Tag(name = "Pokemons")
 @RestController
 public class PokemonControllerCommand {
 
 	private PokemonServiceCommand service;
 	
 	@PostMapping
+	@PokemonsResponsePostCodeStandard
 	public ResponseEntity<PokemonResponse> save(@RequestBody PokemonRequest pokemon){
 		PokemonResponse response = service.save(pokemon);
 		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")
@@ -35,11 +41,13 @@ public class PokemonControllerCommand {
 	}
 	
 	@PatchMapping("/{pokemonId}")
+	@PokemonsResponseUpdateCodeStandard
 	public ResponseEntity<PokemonResponse> update(@PathVariable("pokemonId") Long pokemonId,@RequestBody PokemonUpdate pokemon){
 		return ResponseEntity.ok(service.update(pokemon, pokemonId));
 	}
 	
 	@DeleteMapping("/{pokemonId}")
+	@PokemonResponseDeleteCodeStandard
 	public ResponseEntity<Void> delete(@PathVariable("pokemonId")Long pokemonId){
 		service.delete(pokemonId);
 		return ResponseEntity.status(HttpStatus.NO_CONTENT).build();

@@ -1,8 +1,8 @@
 package br.com.pokedex.controller.query;
 
 import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.ArgumentMatchers.anyInt;
+import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.BDDMockito.given;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
@@ -14,14 +14,17 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
+import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 
 import br.com.pokedex.feature.PokemonScenarioFactory;
+import br.com.pokedex.service.UserPermissionService;
 import br.com.pokedex.service.query.PokemonServiceQuery;
 
 @RunWith(SpringRunner.class)
 @WebMvcTest(PokemonControllerQuery.class)
+@WithMockUser(username = "fabiokopezinski@gmail.com", password = "124578", roles = "ADMIN")
 public class PokemonControllerQueryTest {
 
 	@Autowired
@@ -30,6 +33,9 @@ public class PokemonControllerQueryTest {
 	@MockBean
 	private PokemonServiceQuery service;
 	
+	@MockBean
+	private UserPermissionService servicePermission;
+
 	@Test
 	public void findAll_WhenSendOffesetAndLimitDefault_ExpectedOk() throws Exception {
 		given(service.findAll(0, 10)).willReturn(PokemonScenarioFactory.POKEMON_RESPONSE_DEFAULT_PAGE);
