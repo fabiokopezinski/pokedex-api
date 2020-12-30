@@ -13,8 +13,8 @@ import io.swagger.v3.oas.annotations.servers.Server;
 		  description = "" +
 		    "Documentção da api ",
 		  contact = @Contact(
-		    name = "Fábio Kopezinski",  
-		    email = "fabiokopezinski@gmail.com"
+		    name = "Fábio Kopezinski e Marcelo Campos" ,  
+			email = "fabiokopezinski@gmail.com e marcelo.home19@gmail.com"			
 		  ),
 		  license = @License(
 		    name = "MIT Licence", 

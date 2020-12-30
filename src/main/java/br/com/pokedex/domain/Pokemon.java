@@ -42,7 +42,6 @@ public class Pokemon {
 
 	@Field(name = "DESCRICAO")
 	private String description;
-
 	
 	public static Pokemon of(PokemonRequest request) {
 		return Pokemon.builder()

@@ -18,6 +18,7 @@ public class PokemonUpdate {
 	@Size(min=1,message="O campo 'typeOne' no corpo da requisição está errado")
 	private String  typeOne;
 	@Size(min=1,message="O campo 'typeTwo' no corpo da requisição está errado")
+
 	private String  typeTwo;
 	@Size(min=1,message="O campo 'description' no corpo da requisição está errado")
 	private String description;

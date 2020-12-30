@@ -21,6 +21,7 @@ import io.swagger.v3.oas.annotations.responses.ApiResponses;
 @ApiResponses(value = {
 		@ApiResponse(responseCode = "200", description = "Retorna os pokemon", content = @Content(mediaType = MediaType.APPLICATION_JSON_VALUE,schema = @Schema(implementation = PokemonResponse.class))),
 		@ApiResponse(responseCode = "401", description = "Acesso não autorizado",content = @Content(mediaType = MediaType.APPLICATION_JSON_VALUE)),
+
 		@ApiResponse(responseCode = "404", description = "Pokemon não encontrado",content = @Content(mediaType = MediaType.APPLICATION_JSON_VALUE,schema = @Schema(implementation = BusinessExceptionBody.class))),
 		@ApiResponse(responseCode = "500", description = "Sistema indisponivel",content=@Content(mediaType = MediaType.APPLICATION_JSON_VALUE)) })
 @Operation(summary = Constants.POKEMON_SEARCH_SUMMARRY, description = Constants.POKEMON_SEARCH_DESCRIPTION)
