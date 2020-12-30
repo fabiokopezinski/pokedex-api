@@ -29,13 +29,12 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.csrf().disable().sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()
-                .authorizeRequests().antMatchers(HttpMethod.POST, ("/login")).permitAll().antMatchers("swagger.html")
-                .permitAll().anyRequest().authenticated().and().httpBasic();
+                .authorizeRequests().antMatchers("/swagger").permitAll().antMatchers(HttpMethod.POST, ("/login")).permitAll().anyRequest().authenticated().and().httpBasic();
     }
 
     @Override
 	@Bean
 	protected AuthenticationManager authenticationManager() throws Exception {
 		return super.authenticationManager();
-	}
+    }
 }
