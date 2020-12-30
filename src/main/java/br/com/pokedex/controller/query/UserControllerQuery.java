@@ -14,6 +14,7 @@ import br.com.pokedex.annotation.UserResponseGetNameCodeStardand;
 import br.com.pokedex.annotation.UserResponseGetNicknameCodeStardand;
 import br.com.pokedex.domain.response.UserResponse;
 import br.com.pokedex.service.query.UserServiceQuery;
+import io.swagger.v3.oas.annotations.security.SecurityRequirements;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.AllArgsConstructor;
 
@@ -21,6 +22,7 @@ import lombok.AllArgsConstructor;
 @RestController
 @Tag(name="Usuário")
 @AllArgsConstructor
+@SecurityRequirements
 public class UserControllerQuery {
 	
 	private UserServiceQuery service;

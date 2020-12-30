@@ -24,8 +24,10 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.method.annotation.MethodArgumentTypeMismatchException;
 
+import br.com.pokedex.exception.BadCredentialsException;
 import br.com.pokedex.exception.BusinessException;
 import br.com.pokedex.exception.ExceptionResolver;
+import br.com.pokedex.exception.InvalidJwtAuthenticationException;
 import br.com.pokedex.validations.Message;
 
 @ControllerAdvice
@@ -40,7 +42,20 @@ public class ControlExceptionHandler {
 
 	}
 
+	@ExceptionHandler(value = { BadCredentialsException.class })
+	protected ResponseEntity<Object> handleConflict(BadCredentialsException ex, WebRequest request) {
+		HttpHeaders responseHeaders = new HttpHeaders();
 	
+		return ResponseEntity.status(ex.getHttpStatusCode()).headers(responseHeaders).body(ex.getOnlyBody());
+
+	}
+
+	@ExceptionHandler(value = { InvalidJwtAuthenticationException.class })
+	protected ResponseEntity<Object> handleConflict(InvalidJwtAuthenticationException ex, WebRequest request) {
+		HttpHeaders responseHeaders = new HttpHeaders();
+		return ResponseEntity.status(ex.getHttpStatusCode()).headers(responseHeaders).body(ex.getOnlyBody());
+
+	}
 
 	@ExceptionHandler({ Throwable.class })
 	public ResponseEntity<Object> handleException(Throwable eThrowable) {
@@ -82,14 +97,11 @@ public class ControlExceptionHandler {
 	public ResponseEntity<Object> handleConstraintViolation(ConstraintViolationException exMethod, WebRequest request) {
 		List<String> errors = new ArrayList<String>();
 		for (ConstraintViolation<?> violation : exMethod.getConstraintViolations()) {
-			errors.add( violation.getMessage());
+			errors.add(violation.getMessage());
 		}
 
-		BusinessException ex = BusinessException.builder()
-				.httpStatusCode(HttpStatus.BAD_REQUEST)
-				.message(CONSTRAINT_VALIDATION_FAILED)
-				.description(errors.toString())
-				.build();
+		BusinessException ex = BusinessException.builder().httpStatusCode(HttpStatus.BAD_REQUEST)
+				.message(CONSTRAINT_VALIDATION_FAILED).description(errors.toString()).build();
 		HttpHeaders responseHeaders = new HttpHeaders();
 
 		return ResponseEntity.status(ex.getHttpStatusCode()).headers(responseHeaders).body(ex.getOnlyBody());
@@ -164,7 +176,8 @@ public class ControlExceptionHandler {
 	public ResponseEntity<Object> handleException(EmptyResultDataAccessException e) {
 
 		BusinessException ex = BusinessException.builder().httpStatusCode(HttpStatus.NOT_FOUND)
-				.message(Message.NOT_FOUND_POKEMON.getMessage()).description(ExceptionResolver.getRootException(e)).build();
+				.message(Message.NOT_FOUND_POKEMON.getMessage()).description(ExceptionResolver.getRootException(e))
+				.build();
 		HttpHeaders responseHeaders = new HttpHeaders();
 
 		return ResponseEntity.status(ex.getHttpStatusCode()).headers(responseHeaders).body(ex.getOnlyBody());
