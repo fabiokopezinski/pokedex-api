@@ -20,7 +20,7 @@ import io.swagger.v3.oas.annotations.responses.ApiResponses;
 @ApiResponses(value = {
 		@ApiResponse(responseCode = "200", description = "Retorna os associados existentes", content = @Content(mediaType = MediaType.APPLICATION_JSON_VALUE,schema = @Schema(implementation = PokemonResponse.class))),
 		@ApiResponse(responseCode = "401", description = "Acesso não autorizado",content = @Content(mediaType = MediaType.APPLICATION_JSON_VALUE)),
-		@ApiResponse(responseCode = "500", description = "Sistema indispon�vel",content=@Content(mediaType = MediaType.APPLICATION_JSON_VALUE)) })
+		@ApiResponse(responseCode = "500", description = "Sistema indisponível",content=@Content(mediaType = MediaType.APPLICATION_JSON_VALUE)) })
 @Operation(summary = Constants.POKEMONS_LIST_SUMMARY, description = Constants.POKEMONS_LIST_DESCRIPTION)
 public @interface ListPokemonsGetCodeStandard {
     
