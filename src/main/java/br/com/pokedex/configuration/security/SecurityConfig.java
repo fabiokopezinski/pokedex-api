@@ -35,8 +35,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         .httpBasic().disable()
         .csrf().disable()
         .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
-        .and()
-        .apply(new JwtConfigurer(tokenProvider));
+        .and().authorizeRequests().antMatchers("/swagger-ui.html").permitAll().and().authorizeRequests().antMatchers("/login").permitAll().and().authorizeRequests().antMatchers("/users/**","/pokemons/**").authenticated().and().apply(new JwtConfigurer(tokenProvider));
     }
+
 
 }

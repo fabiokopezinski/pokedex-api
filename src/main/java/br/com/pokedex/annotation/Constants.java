@@ -25,7 +25,7 @@ public class Constants {
 	public static final String POKEMON_DELETE_SUMMARY="Deletar um pokemon";
 	public static final String POKEMON_DELETE_DESCRIPTION="Ira realizar uma exclusão de um pokemon"; 
 	
-	public static final String USERS_LIST_SUMMARY = "Listar pautas usuários";
+	public static final String USERS_LIST_SUMMARY = "Listar usuários";
 	public static final String USERS_LIST_DESCRIPTION = "Ira realizar uma listagem dos usuários";
 
 	public static final String USER_INSERT_SUMMARY = "Cadastrar uma usuário";
@@ -42,5 +42,11 @@ public class Constants {
 
     public static final String  USER_UPDATE_SUMMARY="Atualizar usuário";
     public static final String  USER_UPDATE_DESCRIPTION="Ira realizar uma atualização no usuário ";
+
+    public static final String  USER_DELETE_SUMMARY="Deletar usuário";
+    public static final String  USER_DELETE_DESCRIPTION="Ira realizar uma exclusão no usuário ";
+
+    public static final String  LOGIN_POST_SUMMARY="Logar";
+    public static final String  LOGIN_POST_DESCRIPTION="Ira realizar um login";
     
 }

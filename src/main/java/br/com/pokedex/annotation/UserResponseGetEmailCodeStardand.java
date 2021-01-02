@@ -14,15 +14,17 @@ import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 
 @Target({ ElementType.METHOD, ElementType.ANNOTATION_TYPE, ElementType.TYPE })
 @Retention(RetentionPolicy.RUNTIME)
 @ApiResponses(value = {
 		@ApiResponse(responseCode = "200", description = "Retorna os pokemon", content = @Content(mediaType = MediaType.APPLICATION_JSON_VALUE,schema = @Schema(implementation = UserResponse.class))),
 		@ApiResponse(responseCode = "401", description = "Acesso não autorizado",content = @Content(mediaType = MediaType.APPLICATION_JSON_VALUE)),
+		
 		@ApiResponse(responseCode = "404", description = "Usuário não encontrado",content = @Content(mediaType = MediaType.APPLICATION_JSON_VALUE,schema = @Schema(implementation = BusinessExceptionBody.class))),
 		@ApiResponse(responseCode = "500", description = "Sistema indisponivel",content=@Content(mediaType = MediaType.APPLICATION_JSON_VALUE)) })
-@Operation(summary = Constants.USER_SEARCH_EMAIL_SUMMARRY, description = Constants.USER_SEARCH_EMAIL_DESCRIPTION)
+@Operation(summary = Constants.USER_SEARCH_EMAIL_SUMMARRY, description = Constants.USER_SEARCH_EMAIL_DESCRIPTION,security = @SecurityRequirement(name = "bearerAuth"))
 public @interface UserResponseGetEmailCodeStardand {
     
 }

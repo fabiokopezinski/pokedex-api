@@ -22,7 +22,6 @@ import lombok.AllArgsConstructor;
 @RestController
 @Tag(name="Usuário")
 @AllArgsConstructor
-@SecurityRequirements
 public class UserControllerQuery {
 	
 	private UserServiceQuery service;

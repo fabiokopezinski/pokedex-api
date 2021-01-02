@@ -22,7 +22,7 @@ import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 		@ApiResponse(responseCode = "200", description = "Retorna dos pokemonss existentes", content = @Content(mediaType = MediaType.APPLICATION_JSON_VALUE,schema = @Schema(implementation = UserResponse.class))),
 		@ApiResponse(responseCode = "401", description = "Acesso não autorizado",content = @Content(mediaType = MediaType.APPLICATION_JSON_VALUE)),
 		@ApiResponse(responseCode = "500", description = "Sistema indisponivel",content=@Content(mediaType = MediaType.APPLICATION_JSON_VALUE)) })
-@Operation(summary = Constants.POKEMONS_LIST_SUMMARY, description = Constants.POKEMONS_LIST_DESCRIPTION,security = @SecurityRequirement(name = "basicAuth"))
+@Operation(summary = Constants.USERS_LIST_SUMMARY, description = Constants.USERS_LIST_DESCRIPTION,security = @SecurityRequirement(name = "bearerAuth"))
 public @interface ListUsersResponseCodeStardand {
     
 }
