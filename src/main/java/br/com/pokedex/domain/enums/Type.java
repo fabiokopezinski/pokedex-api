@@ -1,5 +1,6 @@
 package br.com.pokedex.domain.enums;
 
+
 public enum Type {
 	
 	FIRE("Fogo"),
@@ -21,14 +22,24 @@ public enum Type {
 	FAIRY("Fada"),
 	STEEL("Aço");
 
-	private final String description;
+	private String description;
 	
 	private Type(String description) {
 		this.description=description;
 	}
 	
 	public  String getDescription() {
+		
 		return description;
+	}
+
+	public static String getDescription(String type){
+		for(Type types:Type.values()){
+			if(types.getDescription().equalsIgnoreCase(type)){
+				return types.getDescription();
+			}
+		}
+		return null;
 	}
 
 }

@@ -66,6 +66,16 @@ public class UserPermission implements UserDetails {
         return roles;
     }
 
+    public void addPermission(Permission permission){
+        if(permissions==null){
+            permissions=new ArrayList<>();
+            permissions.add(permission);
+        }
+        else {
+            permissions.add(permission);
+        }
+    }
+
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
        return this.permissions;

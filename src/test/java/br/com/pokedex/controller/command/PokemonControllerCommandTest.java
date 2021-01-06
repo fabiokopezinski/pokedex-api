@@ -1,6 +1,5 @@
 package br.com.pokedex.controller.command;
 
-
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.BDDMockito.given;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
@@ -17,29 +16,33 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
-import org.springframework.security.test.context.support.WithMockUser;
+import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 
+import br.com.pokedex.configuration.security.JwtTokenProvider;
 import br.com.pokedex.domain.request.PokemonUpdate;
 import br.com.pokedex.feature.PokemonScenarioFactory;
 import br.com.pokedex.service.UserPermissionService;
 import br.com.pokedex.service.command.PokemonServiceCommand;
 
 @RunWith(SpringRunner.class)
+@ActiveProfiles("test")
 @WebMvcTest(PokemonControllerCommand.class)
-@WithMockUser(username = "fabiokopezinski@gmail.com", password = "124578", roles = "ADMIN")
 public class PokemonControllerCommandTest {
 	
 	@Autowired
 	private MockMvc mockMvc;
-	
+
 	@MockBean
 	private PokemonServiceCommand service;
 
 	@MockBean
-	private UserPermissionService servicePermission;
-	
+	private UserPermissionService userPermissionService;
+
+	@MockBean
+	private JwtTokenProvider jwtTokenProvider;
+
 	@Test
 	public void save_WhenPokemonRequestIsValid_ExpectedCreated() throws Exception {
 		given(service.save(any())).willReturn(PokemonScenarioFactory.POKEMON_RESPONSE_VALID.get());

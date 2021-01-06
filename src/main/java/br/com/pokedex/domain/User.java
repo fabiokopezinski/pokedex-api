@@ -47,7 +47,7 @@ public class User {
 
 	public void addPokemon(Pokemon pokemon) {
 		if (listPokemons == null) {
-			listPokemons = new ArrayList<Pokemon>();
+			listPokemons = new ArrayList<>();
 		}
 		listPokemons.add(pokemon);
 	}

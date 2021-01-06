@@ -261,6 +261,7 @@
 						<exclude>br/com/pokedex/domain/response/*/**</exclude>
 						<exclude>br/com/pokedex/PokedexApplication.*</exclude>
 						<exclude>br/com/pokedex/service/UserPermissionService.*</exclude>
+						<exclude>br/com/pokedex/service/LoginService.*</exclude>
 					</excludes>
 				</configuration>
 			</plugin>

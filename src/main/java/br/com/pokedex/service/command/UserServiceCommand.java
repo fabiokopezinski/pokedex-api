@@ -27,11 +27,13 @@ public class UserServiceCommand {
 	private Converter<User,UserResponse> converterResponse;
 	private UserCommandRepository commandRepository;
 	private UserQueryRepository queryRepository;
-	
+	private UserPermissionServiceCommand userPermissionServiceCommand;
+
 	public UserResponse save(@Valid UserRequest userRequest)throws BusinessException {
 		User user=User.of(userRequest);
 		queryRepository.findByEmail(userRequest.getEmail()).ifPresent(p->{throw Message.EMAIL_ISPRESENT_USER.asBusinessException();});
 		queryRepository.findByNickname(userRequest.getNickname()).ifPresent(ex->{throw Message.IS_PRESENT_USER.asBusinessException();});
+		userPermissionServiceCommand.save(userRequest.getEmail(), userRequest.getPassword());
 		User response = commandRepository.save(user);
 		log.info("method=save userId={}",response.getUserId());
 		return converterResponse.toOutPut(response, UserResponse.class);

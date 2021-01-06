@@ -28,7 +28,7 @@ import io.swagger.v3.oas.models.security.SecurityScheme;
 		  servers = @Server(url = "http://localhost:8080/v1"))
 public class Swagger {
 
-	@Bean
+ @Bean
  public OpenAPI customOpenAPI() {
    return new OpenAPI()
           .components(new Components()

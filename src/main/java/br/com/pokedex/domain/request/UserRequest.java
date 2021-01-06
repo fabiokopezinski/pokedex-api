@@ -30,4 +30,7 @@ public class UserRequest {
 	
 	@NotNull(message="O campo 'nickname' no corpo da requisição")
 	private String nickname;
+
+	@NotNull(message="O campo 'password' no corpo da requisição")
+	private String password;
 }
