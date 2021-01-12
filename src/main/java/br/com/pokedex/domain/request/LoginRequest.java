@@ -3,6 +3,7 @@ package br.com.pokedex.domain.request;
 import javax.validation.constraints.NotNull;
 
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -11,6 +12,7 @@ import lombok.Setter;
 @NoArgsConstructor
 @Setter
 @Getter
+@Builder
 public class LoginRequest {
     
     @NotNull(message="O campo 'email' no corpo da requisição")
