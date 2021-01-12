@@ -1,7 +1,5 @@
 package br.com.pokedex.service.command;
 
-import java.util.Arrays;
-
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 

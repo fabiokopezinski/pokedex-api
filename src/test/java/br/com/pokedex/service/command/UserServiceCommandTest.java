@@ -14,7 +14,6 @@ import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.MockitoJUnitRunner;
-import org.springframework.security.test.context.support.WithMockUser;
 
 import br.com.pokedex.domain.User;
 import br.com.pokedex.domain.response.UserResponse;
@@ -22,12 +21,10 @@ import br.com.pokedex.exception.BusinessException;
 import br.com.pokedex.feature.UserScenarioFactory;
 import br.com.pokedex.repository.command.UserCommandRepository;
 import br.com.pokedex.repository.query.UserQueryRepository;
-import br.com.pokedex.service.UserPermissionService;
 import br.com.pokedex.utils.Converter;
 import javassist.NotFoundException;
 
 @RunWith(MockitoJUnitRunner.class)
-@WithMockUser(username = "fabiokopezinski@gmail.com", password = "124578", roles = "ADMIN")
 public class UserServiceCommandTest {
 
 	@InjectMocks
@@ -39,7 +36,7 @@ public class UserServiceCommandTest {
 	@Mock 
 	UserQueryRepository queryRepository;
 	@Mock
-	UserPermissionService servicePermission;
+	UserPermissionServiceCommand servicePermission;
 	
 	@Test
 	public void save_WhenUserRequestIsValid_ExpectedCreated()throws BusinessException {

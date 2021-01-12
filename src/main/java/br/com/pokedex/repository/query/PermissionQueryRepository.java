@@ -1,6 +1,5 @@
 package br.com.pokedex.repository.query;
 
-import java.util.List;
 import java.util.Optional;
 
 import org.springframework.stereotype.Repository;
