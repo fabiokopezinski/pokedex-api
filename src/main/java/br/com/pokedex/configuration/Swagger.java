@@ -25,7 +25,7 @@ import io.swagger.v3.oas.models.security.SecurityScheme;
 		  license = @License(
 		    name = "MIT Licence", 
 		    url = "https://github.com/fabiokopezinski/pokedex-api/blob/main/LICENSE")),
-		  servers = @Server(url = "http://localhost:8080/v1"))
+		  servers = @Server(url = "http://localhost:8081/v1"))
 public class Swagger {
 
  @Bean

@@ -2,6 +2,7 @@ package br.com.pokedex.domain.response;
 
 import org.springframework.data.annotation.Id;
 
+import br.com.pokedex.domain.enums.Type;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -22,9 +23,9 @@ public class PokemonResponse {
 	
 	private String name;
 	
-	private String  typeOne;
+	private Type  typeOne;
 	
-	private String  typeTwo;
+	private Type  typeTwo;
 	
 	private String description;
 }

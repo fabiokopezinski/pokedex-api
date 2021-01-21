@@ -27,7 +27,7 @@ public class UserServiceQuery {
 	public Page<UserResponse> findAll(int offset, int size) {
 		Pageable p = PageRequest.of(offset, size);
 		log.info("method=finAll offset={} size={}", offset, size);
-		return converterResponse.toPage(repository.findAll(p), UserResponse.class);
+		return converterResponse.toPage(repository.findAll(p), UserResponse.class,p);
 	}
 
 	public UserResponse findByNickname(String nickname) {

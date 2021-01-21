@@ -40,7 +40,7 @@ public class PokemonServiceQueryTest {
 	@Test
 	public void findAll_WhenOffsetAndSizeIsDefault() {
 		given(repository.findAll(any(Pageable.class))).willReturn(PokemonScenarioFactory.POKEMON_DEFAULT_PAGE);
-		given(converter.toPage(any(), any())).willReturn(PokemonScenarioFactory.POKEMON_RESPONSE_DEFAULT_PAGE);
+		given(converter.toPage(any(), any(),any())).willReturn(PokemonScenarioFactory.POKEMON_RESPONSE_DEFAULT_PAGE);
 		assertNotNull(service.findAll(0, 10));
 		verify(repository).findAll(any(Pageable.class));
 	}
@@ -61,7 +61,7 @@ public class PokemonServiceQueryTest {
 	@Test
 	public void findByTypeOne_WhenTypeOneIsValid_ExpectedOk() {
 		given(repository.findByTypeOne(any(),any(Pageable.class))).willReturn(PokemonScenarioFactory.POKEMON_DEFAULT_PAGE);
-		given(converter.toPage(any(), any())).willReturn(PokemonScenarioFactory.POKEMON_RESPONSE_DEFAULT_PAGE);
+		given(converter.toPage(any(), any(),any())).willReturn(PokemonScenarioFactory.POKEMON_RESPONSE_DEFAULT_PAGE);
 		assertNotNull(service.findByTypeOne("Grama", 0, 10));
 		verify(repository).findByTypeOne(any(), any(Pageable.class));
 	}
@@ -69,7 +69,7 @@ public class PokemonServiceQueryTest {
 	@Test
 	public void findByTypeOneAndTypeTwo_WhenTypeOneAndTypeTwoIsValid_ExpectedOk() {
 		given(repository.findByTypeOneAndTypeTwo(any(),any(),any(Pageable.class))).willReturn(PokemonScenarioFactory.POKEMON_DEFAULT_PAGE);
-		given(converter.toPage(any(), any())).willReturn(PokemonScenarioFactory.POKEMON_RESPONSE_DEFAULT_PAGE);
+		given(converter.toPage(any(), any(),any())).willReturn(PokemonScenarioFactory.POKEMON_RESPONSE_DEFAULT_PAGE);
 		assertNotNull(service.findByTypeOneAndTypeTwo("Grama","Fogo" ,0, 10));
 		verify(repository).findByTypeOneAndTypeTwo(any(),any(),any(Pageable.class));
 	}

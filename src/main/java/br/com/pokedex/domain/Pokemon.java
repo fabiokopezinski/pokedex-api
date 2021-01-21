@@ -6,6 +6,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
 import org.springframework.data.mongodb.core.mapping.FieldType;
 
+import br.com.pokedex.domain.enums.Type;
 import br.com.pokedex.domain.request.PokemonRequest;
 import br.com.pokedex.domain.request.PokemonUpdate;
 import lombok.AllArgsConstructor;
@@ -35,10 +36,10 @@ public class Pokemon {
 	private String name;
 
 	@Field(name = "TIPO_UM", targetType = FieldType.STRING)
-	private String typeOne;
+	private Type typeOne;
 
 	@Field(name = "TIPO_DOIS", targetType = FieldType.STRING)
-	private String typeTwo;
+	private Type typeTwo;
 
 	@Field(name = "DESCRICAO")
 	private String description;
@@ -47,8 +48,8 @@ public class Pokemon {
 		return Pokemon.builder()
 				.pokemonId(request.getPokemonId())
 				.name(request.getName())
-				.typeOne(request.getTypeOne())
-				.typeTwo(request.getTypeTwo())
+				.typeOne(Type.getTypee(request.getTypeOne()))
+				.typeTwo(Type.getTypee(request.getTypeTwo()))
 				.description(request.getDescription())
 				.build();
 	}
@@ -59,10 +60,10 @@ public class Pokemon {
 			this.name = pokemonUpdate.getName();
 		}
 		if (pokemonUpdate.getTypeOne() != null) {
-			this.typeOne = pokemonUpdate.getTypeOne();
+			this.typeOne = Type.getTypee(pokemonUpdate.getTypeOne());
 		}
 		if (pokemonUpdate.getTypeTwo() != null) {
-			this.typeTwo = pokemonUpdate.getTypeTwo();
+			this.typeTwo = Type.getTypee(pokemonUpdate.getTypeTwo());
 		}
 		if (pokemonUpdate.getDescription() != null) {
 			this.description = pokemonUpdate.getDescription();

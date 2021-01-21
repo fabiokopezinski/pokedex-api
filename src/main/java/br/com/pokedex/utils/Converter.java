@@ -7,6 +7,7 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -20,9 +21,9 @@ public class Converter <D,S>{
 		return sourceList.stream().map(entity -> conversor.map(entity, destClass)).collect(Collectors.toList());
 	}
 	
-	public Page<S> toPage (Page<D> page,Class<S> destClass) {
+	public Page<S> toPage (Page<D> page,Class<S> destClass,Pageable pageable) {
 		List<S> list = page.stream().map(entity -> conversor.map(entity, destClass)).collect(Collectors.toList());
-		return new PageImpl<>(list);
+		return new PageImpl<>(list,pageable,page.getTotalElements());
 	}
 
 	public S toEntity(D sourceClass, Class<S> destClass) {

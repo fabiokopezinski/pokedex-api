@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.validation.annotation.Validated;
 
 import br.com.pokedex.domain.Pokemon;
+import br.com.pokedex.domain.enums.Type;
 import br.com.pokedex.domain.response.PokemonResponse;
 import br.com.pokedex.repository.query.PokemonQueryRepository;
 import br.com.pokedex.utils.Converter;
@@ -27,7 +28,7 @@ public class PokemonServiceQuery {
 	public Page<PokemonResponse>findAll(int offeset,int size){
 		Pageable p=PageRequest.of(offeset, size);
 		log.info("method=findAll offset={} size={}",offeset,size);
-		return converterResponse.toPage(repository.findAll(p), PokemonResponse.class);
+		return converterResponse.toPage(repository.findAll(p), PokemonResponse.class,p);
 	}
 	
 	public PokemonResponse findByPokemon(Long pokemonId) {
@@ -38,13 +39,13 @@ public class PokemonServiceQuery {
 	public Page<PokemonResponse>findByTypeOneAndTypeTwo(String typeOne, String typeTwo, int offeset, int size){
 		Pageable p = PageRequest.of(offeset, size);
 		log.info("method=findByTypeOneAndTypeTwo typeOne={} typeTwo={} offset={} size={}",typeOne, typeTwo,offeset,size);
-		return converterResponse.toPage(repository.findByTypeOneAndTypeTwo(typeOne, typeTwo, p), PokemonResponse.class);
+		return converterResponse.toPage(repository.findByTypeOneAndTypeTwo(Type.getTypee(typeOne).getType(), Type.getTypee(typeTwo).getType(), p), PokemonResponse.class,p);
 	}
 	
 	public Page<PokemonResponse>findByTypeOne(String typeOne,int offeset, int size){
 		Pageable p = PageRequest.of(offeset, size);
 		log.info("method=findByTypeOne typeOne={} offset={} size={}",typeOne,offeset,size);
-		return converterResponse.toPage(repository.findByTypeOne(typeOne, p), PokemonResponse.class);
+		return converterResponse.toPage(repository.findByTypeOne(Type.getTypee(typeOne).getType(), p), PokemonResponse.class,p);
 	}
 	
 	public PokemonResponse findByName(String name){

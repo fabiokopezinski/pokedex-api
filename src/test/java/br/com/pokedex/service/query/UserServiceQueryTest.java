@@ -40,7 +40,7 @@ public class UserServiceQueryTest {
 	@Test
 	public void findAll_WhenOffsetAndSizeIsDefault() {
 		given(repository.findAll(any(Pageable.class))).willReturn(UserScenarioFactory.USER_DEFAULT_PAGE);
-		given(converterResponse.toPage(any(), any())).willReturn(UserScenarioFactory.USER_RESPONSE_DEFAULT_PAGE);
+		given(converterResponse.toPage(any(), any(),any())).willReturn(UserScenarioFactory.USER_RESPONSE_DEFAULT_PAGE);
 		assertNotNull(service.findAll(0, 10));
 		verify(repository,times(1)).findAll(any(Pageable.class));
 	}
